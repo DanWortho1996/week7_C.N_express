@@ -1,8 +1,39 @@
+require("dotenv").config();
 const express = require("express");
+const mongoose = require("mongoose");
+
+// console.log(process.env.MY_WORD);
 
 const app = express();
 
 app.use(express.json());
+
+//DB connection
+const connection = async () => {
+    await mongoose.connect(process.env.MONGODB_URI);
+    console.log("MongoDB is working");
+};
+
+connection();
+
+//Book model
+const bookSchema = new mongoose.Schema({
+    title: {
+        type: String,
+        required: true,
+        unique: true,
+    },
+    author:{
+        type: String,
+        required: true,
+    },
+    genre: {
+        type: String,
+    },
+});
+
+//This adds it auto to mongooseDB using Capital first letter and links to url name you input yourself i.e (codenationweek7)
+const Book = mongoose.model("book", bookSchema);
 
 // const fakeDB = [];
 
@@ -12,13 +43,22 @@ app.get("/books/allbooks", (request, response) => {
 });
 
 //This is a root "/" to pull/target the next page or section it in arrays
-app.get("/books", (request, response) => {
+app.get("/books/onebook", (request, response) => {
     response.send({message: "success"});
 });
 
+//Routes
+
 //Post route
-app.post("/books", (request, response) => {
-    response.send({message: "success"})
+app.post("/books/addbook", async (request, response) => {
+    console.log("request.body", request.body.genre)
+    
+    const book = await Book.create({
+        title: request.body.title,
+        author: request.body.author,
+        genre: request.body.genre
+    });
+    response.send({message: "success", book: book});
 });
 
 app.listen(5000, () => {
