@@ -6,6 +6,11 @@ app.use(express.json());
 
 const fakeDB = [];
 
+//Get all books
+app.get("/books/allbooks", (request, response) => {
+    response.send({message: "success", books: fakeDB});
+});
+
 //This is a root "/" to pull/target the next page or section it in arrays
 app.get("/books", (request, response) => {
     
@@ -16,9 +21,6 @@ app.get("/books", (request, response) => {
      }
     response.send({message: "success", book: book});
 });
-
-//Get all books (i.e, fakeDB)
-app.get()
 
 //Post route
 app.post("/books", (request, response) => {
