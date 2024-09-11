@@ -38,9 +38,19 @@ const Book = mongoose.model("book", bookSchema);
 // const fakeDB = [];
 
 //Get all books
-app.get("/books/allbooks", (request, response) => {
+app.get("/books/getallbooks", (request, response) => {
     response.send({message: "success"});
 });
+
+
+app.put("/books/updatebookauthor",
+    //Put code here
+
+    //We will need
+
+    //1. Filter object (filter by title)
+    //2. Update object (author)
+)
 
 //This is a root "/" to pull/target the next page or section it in arrays
 app.get("/books/onebook", (request, response) => {
@@ -54,9 +64,10 @@ app.post("/books/addbook", async (request, response) => {
     console.log("request.body", request.body.genre)
     
     const book = await Book.create({
+        //Request is an Obejct, Body is an Object, title can be all 4 mainly key or strings. but can be any.
         title: request.body.title,
         author: request.body.author,
-        genre: request.body.genre
+        genre: request.body.genre,
     });
     response.send({message: "success", book: book});
 });
