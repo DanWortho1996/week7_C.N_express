@@ -8,7 +8,7 @@ const app = express();
 
 app.use(express.json());
 
-//DB connection
+//DB connection (Data Base)
 const connection = async () => {
     await mongoose.connect(process.env.MONGODB_URI);
     console.log("MongoDB is working");
@@ -37,33 +37,17 @@ const Book = mongoose.model("book", bookSchema);
 
 // const fakeDB = [];
 
-//Get all books
+//This gets all books from the database
 app.get("/books/getallbooks", async (request, response) => {
     const book = await Book.find({
-        title: request.body.title
-    })
-    response.send({message: "success", book: book});
-});
-
-//Delete a book
-app.delete("/books/deletebooktitle", async (request, response) => {
-    const book = await Book.deleteOne({
-        title: request.body.title
+        title: request.body.title,
+        author: request.body.author,
+        genre: request.body.genre,
     });
-    response.send({message: "success", deletebooktitle: book});
+    response.send({message: "success", getallbooks: book});
 });
 
-
-app.put("/books/updatebookauthor", async (request, response) => {
-
-    //Put code here
-
-    //We will need
-
-    //1. Filter object (filter by title)
-    //2. Update object (author)
-});
-
+//This gets all books from the database
 //This is a root "/" to pull/target the next page or section it in arrays
 app.get("/books/onebook", (request, response) => {
     response.send({message: "success"});
@@ -71,7 +55,7 @@ app.get("/books/onebook", (request, response) => {
 
 //Routes
 
-//Post route This creates a post/book
+//Post route This creates a post/book. This adds a book to the database.
 app.post("/books/addbook", async (request, response) => {
     console.log("request.body", request.body.genre)
     
@@ -84,7 +68,31 @@ app.post("/books/addbook", async (request, response) => {
     response.send({message: "success", book: book});
 });
 
+//Deletes a single book from the database
+//Delete a book, Delete by title
+app.delete("/books/deletebooktitle", async (request, response) => {
+    const book = await Book.deleteOne({
+        title: request.body.title
+    });
+    response.send({message: "success", deletebooktitle: book});
+});
+
 //This will show that server 5000 is available and currently in use when running.
 app.listen(5000, () => {
     console.log("Server is listening on port 5000");
 });
+
+
+//Activity - Update a book author
+//Updates a book author (filter by title)
+app.put("/books/updatebookauthor", async (request, response) => {
+
+    //Put code here
+
+    //We will need
+
+    //1. Filter object (filter by title)
+    //2. Update object (author)
+});
+
+
