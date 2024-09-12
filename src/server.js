@@ -47,8 +47,7 @@ app.get("/books/getallbooks", async (request, response) => {
     response.send({message: "success", getallbooks: book});
 });
 
-//This gets all books from the database
-//This is a root "/" to pull/target the next page or section it in arrays
+//This is a root "/" to pull/target the next page or section in it's arrays
 app.get("/books/onebook", (request, response) => {
     response.send({message: "success"});
 });
@@ -88,6 +87,10 @@ app.listen(5000, () => {
 app.put("/books/updatebookauthor", async (request, response) => {
 
     //Put code here
+    const author = await Book.findOneAndUpdate({
+        title: request.body.title}, 
+        {author: request.body.author});
+        response.send({message: "author is updated", updatebookauthor: author});
 
     //We will need
 
