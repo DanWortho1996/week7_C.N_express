@@ -6,6 +6,9 @@ const connection = require("./db/connection");
 
 const Book = require("./books/model");
 
+const bookRouter = require("./books/routes");
+
+
 // console.log(process.env.MY_WORD);
 
 const app = express();
@@ -13,6 +16,8 @@ const app = express();
 app.use(express.json());
 
 connection();
+
+app.use(bookRouter);
 
 //DB connection (Data Base) - This has been moved to a new js file in the same folder as the server file too (src folder)
 // const connection = async () => {
@@ -60,18 +65,19 @@ app.get("/books/onebook", (request, response) => {
 
 //Routes
 
-//Post route This creates a post/book. This adds a book to the database.
-app.post("/books/addbook", async (request, response) => {
-    console.log("request.body", request.body.genre)
+//Post = Add book
+//Post route This creates a post/book. This adds a book to the database. - This has also been moved to a new file.
+// app.post("/books/addbook", async (request, response) => {
+//     console.log("request.body", request.body.genre)
     
-    const book = await Book.create({
-        //Request is an Object, Body is an Object, title can be all 4 mainly key or strings. but can be any.
-        title: request.body.title,
-        author: request.body.author,
-        genre: request.body.genre,
-    });
-    response.send({message: "success", book: book});
-});
+//     const book = await Book.create({
+//         //Request is an Object, Body is an Object, title can be all 4 mainly key or strings. but can be any.
+//         title: request.body.title,
+//         author: request.body.author,
+//         genre: request.body.genre,
+//     });
+//     response.send({message: "success", book: book});
+// });
 
 //Deletes a single book from the database
 //Delete a book, Delete by title
