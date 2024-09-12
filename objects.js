@@ -46,7 +46,7 @@ const avenger = {
         "Hawkeye"],
 }
 
-//This will show and target avengers and print Blackw widow with Gender
+//This will show and target avengers and print Black Widow with Gender
 console.log(avenger.details.gender);
 
 //Targets Hawkeye in Array within friends. targeting an object first then a key then the boolean, in that order.

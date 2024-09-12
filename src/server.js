@@ -8,7 +8,7 @@ const Book = require("./books/model");
 
 const bookRouter = require("./books/routes");
 
-
+//This would print awesome!!! on the thunderlient and url. 
 // console.log(process.env.MY_WORD);
 
 const app = express();
@@ -48,20 +48,21 @@ app.use(bookRouter);
 
 // const fakeDB = [];
 
+//This has been moved to routes.js
 //This gets all books from the database
-app.get("/books/getallbooks", async (request, response) => {
-    const book = await Book.find({
-        title: request.body.title,
-        author: request.body.author,
-        genre: request.body.genre,
-    });
-    response.send({message: "success", getallbooks: book});
-});
+// app.get("/books/getallbooks", async (request, response) => {
+//     const book = await Book.find({
+//         title: request.body.title,
+//         author: request.body.author,
+//         genre: request.body.genre,
+//     });
+//     response.send({message: "success", getallbooks: book});
+// });
 
 //This is a root "/" to pull/target the next page or section in it's arrays
-app.get("/books/onebook", (request, response) => {
-    response.send({message: "success"});
-});
+// app.get("/books/onebook", (request, response) => {
+//     response.send({message: "success"});
+// });
 
 //Routes
 
@@ -81,12 +82,12 @@ app.get("/books/onebook", (request, response) => {
 
 //Deletes a single book from the database
 //Delete a book, Delete by title
-app.delete("/books/deletebooktitle", async (request, response) => {
-    const book = await Book.deleteOne({
-        title: request.body.title
-    });
-    response.send({message: "success", deletebooktitle: book});
-});
+// app.delete("/books/deletebooktitle", async (request, response) => {
+//     const book = await Book.deleteOne({
+//         title: request.body.title
+//     });
+//     response.send({message: "success", deleteBookTitle: book});
+// });
 
 //This will show that server 5000 is available and currently in use when running.
 app.listen(5000, () => {
@@ -100,9 +101,9 @@ app.put("/books/updatebookauthor", async (request, response) => {
 
     //Put code here
     const author = await Book.findOneAndUpdate({
-        title: request.body.title}, 
+        title: request.body.title},
         {author: request.body.author});
-        response.send({message: "author is updated", updatebookauthor: author});
+        response.send({message: "author is updated", updateBookAuthor: author});
 
     //We will need
 
