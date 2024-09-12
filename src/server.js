@@ -2,38 +2,44 @@ require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 
+const connection = require("./db/connection");
+
+const Book = require("./books/model");
+
 // console.log(process.env.MY_WORD);
 
 const app = express();
 
 app.use(express.json());
 
-//DB connection (Data Base)
-const connection = async () => {
-    await mongoose.connect(process.env.MONGODB_URI);
-    console.log("MongoDB is working");
-};
-
 connection();
 
-//Book model
-const bookSchema = new mongoose.Schema({
-    title: {
-        type: String,
-        required: true,
-        unique: true,
-    },
-    author:{
-        type: String,
-        required: true,
-    },
-    genre: {
-        type: String,
-    },
-});
+//DB connection (Data Base) - This has been moved to a new js file in the same folder as the server file too (src folder)
+// const connection = async () => {
+//     await mongoose.connect(process.env.MONGODB_URI);
+//     console.log("MongoDB is working");
+// };
+
+// connection();
+
+//Book model - This has been moved to a new folder (books) in the model.js file
+// const bookSchema = new mongoose.Schema({
+//     title: {
+//         type: String,
+//         required: true,
+//         unique: true,
+//     },
+//     author:{
+//         type: String,
+//         required: true,
+//     },
+//     genre: {
+//         type: String,
+//     },
+// });
 
 //This adds it auto to mongooseDB using Capital first letter and links to url name you input yourself i.e (codenationweek7)
-const Book = mongoose.model("book", bookSchema);
+// const Book = mongoose.model("book", bookSchema);
 
 // const fakeDB = [];
 
