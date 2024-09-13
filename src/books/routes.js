@@ -3,7 +3,7 @@ const {Router} = require("express");
 
 const bookRouter = Router();
 
-const {addBook, deleteBookTitle, getAllBooks, updateBookAuthor} = require("./controllers");
+const {addBook, deleteBookTitle, getAllBooks, updateBookAuthor, deleteAllBookTitle} = require("./controllers");
 
 //This has been moved to controller.js
 // const Book = require("./model");
@@ -32,6 +32,9 @@ bookRouter.put("/books/updatebookauthor", updateBookAuthor);
 
 //This will delete the last book title in the collection - COMPLETE in controllers.js
 bookRouter.delete("/books/deletebooktitle", deleteBookTitle);
+
+//This will delete all books in the collection
+bookRouter.delete("/books/deleteallbooktitle", deleteAllBookTitle);
 
 //This works by module being an object and exports is a key value in object of module to bookRouter, bookRouter = file
 module.exports = bookRouter;
