@@ -95,20 +95,20 @@ app.listen(5000, () => {
 });
 
 
-//Activity - Update a book author
+//Activity - Update a book author - Completed
 //Updates a book author (filter by title)
-app.put("/books/updatebookauthor", async (request, response) => {
+// app.put("/books/updatebookauthor", async (request, response) => {
 
-    //Put code here
-    const author = await Book.findOneAndUpdate({
-        title: request.body.title},
-        {author: request.body.author});
-        response.send({message: "author is updated", updateBookAuthor: author});
+//     //Put code here
+//     const author = await Book.findOneAndUpdate({
+//         title: request.body.title},
+//         {author: request.body.author});
+//         response.send({message: "author is updated", updateBookAuthor: author});
 
     //We will need
 
     //1. Filter object (filter by title)
     //2. Update object (author)
-});
+// });
 
 

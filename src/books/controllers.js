@@ -21,8 +21,11 @@ const getAllBooks = async (request, response) => {
     response.send({message: "success", getAllBooks: book});
 };
 
+//Stretch goal completed to auto update once requested/clicked and displays the new update using {new: true}
+//This updates the author of the book (filtered/searched by title)
+//This also updates the author on first click/request
 const updateBookAuthor = async (request, response) => {
-    const author = await Book.findOneAndUpdate({title: request.body.title}, {author: request.body.author});
+    const author = await Book.findOneAndUpdate({title: request.body.title}, {author: request.body.author}, {new: true});
         response.send({message: "author is updated", updateBookAuthor: author});
 };
 
