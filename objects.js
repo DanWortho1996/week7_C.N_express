@@ -46,7 +46,7 @@ const avenger = {
         "Hawkeye"],
 }
 
-//This will show and target avengers and print Blackw widow with Gender
+//This will show and target avengers and print Black Widow with Gender
 console.log(avenger.details.gender);
 
 //Targets Hawkeye in Array within friends. targeting an object first then a key then the boolean, in that order.
@@ -54,3 +54,31 @@ console.log(avenger.friends[2]);
 
 //Targets Captain America in the list of friends in an Array
 console.log(avenger.friends[0]);
+
+// const value1 = "stewie"
+
+// const awesomeOjb = {
+//     name: value1,
+//     age: "28",
+//     isValid: true,
+// }
+
+//This is an example of using dynamic keys and targeting sections to print out in full or in parts
+//This function will key all details shown below in that order.
+const car = {
+    make: "Ford",
+    model: "Puma",
+    year: "2024",
+    keys: "fob",
+    doors: " 5 doors",
+    intake: "petrol",
+    registration: "BK68 GPN",
+    isFacts: true,
+}
+
+//This to show all details in the function/app (car)
+console.log(car);
+
+//To target a specific section use (car.model), (car.registration)
+//This will target and print the model section of the car only.
+console.log(car.model);
